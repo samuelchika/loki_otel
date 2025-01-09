@@ -1,0 +1,17 @@
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","max":6,"message":"Rolled 3 dice: 4, 4, 3","min":1,"span_id":"b0e84a9266e7114f","trace_flags":"01","trace_id":"c83f7dd9d5e4a005df0763850eb82808"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","max":6,"message":"Rolled 3 dice: 3, 2, 3","min":1,"span_id":"27dc7cca6ce99d15","trace_flags":"01","trace_id":"05fa458a4ef1f3ccc5573f1c2f26b949"}
+{"level":"info","message":"Request to /rolldice?rolls=3 finished with status code 200","span_id":"6db6a14bad5e55c1","trace_flags":"01","trace_id":"05fa458a4ef1f3ccc5573f1c2f26b949"}
+{"level":"info","max":6,"message":"Rolled 3 dice: 6, 2, 1","min":1,"span_id":"4cb5380c3fa400d2","trace_flags":"01","trace_id":"a6ff04acef32c0712e1482cf49b3c511"}
+{"level":"info","message":"Request to /rolldice?rolls=3 finished with status code 200","span_id":"81e1692c713bb305","trace_flags":"01","trace_id":"a6ff04acef32c0712e1482cf49b3c511"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
+{"level":"info","max":6,"message":"Rolled 3 dice: 4, 2, 4","min":1,"span_id":"0560633285f97cc4","trace_flags":"01","trace_id":"d0dc0b85ac4be95350caca58ecb76420"}
+{"duration":5,"ip":"::ffff:127.0.0.1","level":"info","message":"finished","method":"GET","path":"/rolldice","span_id":"c74ae4e2d5170114","timestamp":1736422054015,"trace_flags":"01","trace_id":"d0dc0b85ac4be95350caca58ecb76420","url":"/rolldice?rolls=3","userAgent":"Thunder Client (https://www.thunderclient.com)"}
+{"level":"info","max":6,"message":"Rolled 3 dice: 5, 1, 4","min":1,"span_id":"0bd27178e08521cc","trace_flags":"01","trace_id":"94f478ea21072ee77ab1ad9e1f040889"}
+{"duration":4,"ip":"::ffff:127.0.0.1","level":"info","message":"finished","method":"GET","path":"/rolldice","span_id":"27bcccc5c62f6290","timestamp":1736422054705,"trace_flags":"01","trace_id":"94f478ea21072ee77ab1ad9e1f040889","url":"/rolldice?rolls=3","userAgent":"Thunder Client (https://www.thunderclient.com)"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}

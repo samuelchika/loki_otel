@@ -1,0 +1,21 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+      grpc:
+
+
+processors:
+  batch:
+
+
+exporters:
+  otlphttp:
+    endpoint: "http://localhost:3100/otlp"
+
+service:
+  pipelines:
+    logs:
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ otlphttp ]
