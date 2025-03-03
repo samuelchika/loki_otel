@@ -18,7 +18,7 @@
     "@opentelemetry/sdk-node": "^0.57.0",
     "@opentelemetry/sdk-trace-node": "^1.30.0",
     "@opentelemetry/semantic-conventions": "^1.28.0",
-    "@opentelemetry/winston-transport": "^0.10.0",
+    "@opentelemetry/winston-transport": "^0.10.1",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "express": "^4.21.2",

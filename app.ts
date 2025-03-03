@@ -4,10 +4,12 @@ import express, { Express } from 'express';
 import { trace, Span, metrics } from '@opentelemetry/api';
 import { rollTheDice } from './dice';
 import winston from 'winston';
+import { OpenTelemetryTransportV3 } from '@opentelemetry/winston-transport';
 
 export const logger = winston.createLogger({
     transports: [
         new winston.transports.Console(),
+        new OpenTelemetryTransportV3(),
         new winston.transports.File({ filename: 'somefile.log' }),
     ],
 });
