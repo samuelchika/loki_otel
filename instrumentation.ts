@@ -46,7 +46,9 @@ const sdk = new NodeSDK({
     logRecordProcessors: [
         new SimpleLogRecordProcessor(new ConsoleLogRecordExporter()),
     ],
-    instrumentations: [getNodeAutoInstrumentations()],
+    instrumentations: [getNodeAutoInstrumentations()], // This will automatically instrument various Node.js libraries including the WINSTON transport.
+    // Because of this, you don't need to add the OpenTelemetryTransportV3 to your WINSTON transports.
+    // The OpenTelemetryTransportV3 is already included in the auto-instrumentations.
 });
 
 sdk.start();
