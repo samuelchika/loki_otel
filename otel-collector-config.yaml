@@ -20,7 +20,7 @@ exporters:
   otlp:
     endpoint: localhost:4317
   otlphttp:
-    endpoint: "http://localhost:3100/otlp/v1/logs"
+    endpoint: http://loki:3100/otlp
 
 service:
   pipelines:

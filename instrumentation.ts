@@ -31,13 +31,15 @@ import {
     ATTR_SERVICE_VERSION,
 } from '@opentelemetry/semantic-conventions';
 import {
+    BatchLogRecordProcessor,
     ConsoleLogRecordExporter,
     SimpleLogRecordProcessor,
 } from '@opentelemetry/sdk-logs';
+import { OTLPLogExporter } from '@opentelemetry/exporter-logs-otlp-grpc';
 
-// const otlpTraceExporter = new OTLPTraceExporter({
-//     url: 'http://localhost:4317',
-// });
+const otlpLogExporter = new OTLPLogExporter({
+    url: 'http://localhost:4317/v1/logs',
+});
 
 // const
 
@@ -51,7 +53,8 @@ const sdk = new NodeSDK({
         exporter: new ConsoleMetricExporter(),
     }),
     logRecordProcessors: [
-        new SimpleLogRecordProcessor(new ConsoleLogRecordExporter()),
+        new BatchLogRecordProcessor(new ConsoleLogRecordExporter()),
+        new BatchLogRecordProcessor(otlpLogExporter),
     ],
     instrumentations: [getNodeAutoInstrumentations()], // This will automatically instrument various Node.js libraries including the WINSTON transport.
     // Because of this, you don't need to add the OpenTelemetryTransportV3 to your WINSTON transports.

@@ -24,6 +24,11 @@ const resources_1 = require("@opentelemetry/resources");
 const auto_instrumentations_node_1 = require("@opentelemetry/auto-instrumentations-node");
 const semantic_conventions_1 = require("@opentelemetry/semantic-conventions");
 const sdk_logs_1 = require("@opentelemetry/sdk-logs");
+const exporter_logs_otlp_grpc_1 = require("@opentelemetry/exporter-logs-otlp-grpc");
+const otlpLogExporter = new exporter_logs_otlp_grpc_1.OTLPLogExporter({
+    url: 'http://localhost:4317/v1/logs',
+});
+// const
 const sdk = new sdk_node_1.NodeSDK({
     resource: new resources_1.Resource({
         [semantic_conventions_1.ATTR_SERVICE_NAME]: 'dice-software-node',
@@ -34,7 +39,8 @@ const sdk = new sdk_node_1.NodeSDK({
         exporter: new sdk_metrics_1.ConsoleMetricExporter(),
     }),
     logRecordProcessors: [
-        new sdk_logs_1.SimpleLogRecordProcessor(new sdk_logs_1.ConsoleLogRecordExporter()),
+        new sdk_logs_1.BatchLogRecordProcessor(new sdk_logs_1.ConsoleLogRecordExporter()),
+        new sdk_logs_1.BatchLogRecordProcessor(otlpLogExporter),
     ],
     instrumentations: [(0, auto_instrumentations_node_1.getNodeAutoInstrumentations)()], // This will automatically instrument various Node.js libraries including the WINSTON transport.
     // Because of this, you don't need to add the OpenTelemetryTransportV3 to your WINSTON transports.
