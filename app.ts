@@ -60,6 +60,7 @@ app.get('/rolldice', (req, res) => {
             span.setAttribute('rolldice', 'entrypoint_get_request');
             span.end();
             res.send(JSON.stringify(rollTheDice(rolls, 1, 6)));
+            res.end();
             const endTime = new Date().getTime();
             const executionTime = endTime - startTime;
 

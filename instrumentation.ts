@@ -18,10 +18,11 @@
 // sdk.start();
 /*instrumentation.ts*/
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
+import { ConsoleSpanExporter} from '@opentelemetry/sdk-trace-node';
 import {
     PeriodicExportingMetricReader,
     ConsoleMetricExporter,
+    
 } from '@opentelemetry/sdk-metrics';
 import { Resource } from '@opentelemetry/resources';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
@@ -33,6 +34,12 @@ import {
     ConsoleLogRecordExporter,
     SimpleLogRecordProcessor,
 } from '@opentelemetry/sdk-logs';
+
+// const otlpTraceExporter = new OTLPTraceExporter({
+//     url: 'http://localhost:4317',
+// });
+
+// const
 
 const sdk = new NodeSDK({
     resource: new Resource({
@@ -50,5 +57,12 @@ const sdk = new NodeSDK({
     // Because of this, you don't need to add the OpenTelemetryTransportV3 to your WINSTON transports.
     // The OpenTelemetryTransportV3 is already included in the auto-instrumentations.
 });
+
+//   traceExporter: new OTLPTraceExporter({
+//     // optional - default url is http://localhost:4318/v1/traces
+//     url: '<your-otlp-endpoint>/v1/traces',
+//     // optional - collection of custom headers to be sent with each request, empty by default
+//     headers: {},
+//   }),
 
 sdk.start();
