@@ -1,0 +1,17 @@
+# prometheus/prometheus.yml
+global:
+  scrape_interval: 15s # How frequently to scrape targets
+  evaluation_interval: 15s # How frequently to evaluate rules
+
+scrape_configs:
+# Scrape Prometheus itself
+- job_name: 'prometheus'
+  static_configs:
+  - targets: [ 'localhost:9090' ]
+
+# Scrape your Node.js application
+- job_name: 'nodejs-app'
+  # The 'nodejs-app' is the service name in your docker-compose.yml
+  # Port 3001 is where your Node.js app exposes metrics
+  static_configs:
+  - targets: [ 'host.docker.internal:8080' ] # Important: use the Docker service name and internal port

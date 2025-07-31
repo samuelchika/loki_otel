@@ -1,5 +1,5 @@
 {
   "watch": ["./"],
   "ext": "ts",
-  "exec": "tsc && ts-node --require ./dist/instrumentation.js ./dist/app.js"
+  "exec": "tsc && ts-node ./dist/app.js"
 }

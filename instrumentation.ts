@@ -1,3 +1,5 @@
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { metrics } from '@opentelemetry/api';
 // /*instrumentation.ts*/
 // import { NodeSDK } from '@opentelemetry/sdk-node';
 // import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
@@ -22,8 +24,9 @@ import { ConsoleSpanExporter} from '@opentelemetry/sdk-trace-node';
 import {
     PeriodicExportingMetricReader,
     ConsoleMetricExporter,
-    
+    MeterProvider,
 } from '@opentelemetry/sdk-metrics';
+import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
 import { Resource } from '@opentelemetry/resources';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import {
@@ -37,11 +40,22 @@ import {
 } from '@opentelemetry/sdk-logs';
 import { OTLPLogExporter } from '@opentelemetry/exporter-logs-otlp-grpc';
 
+
+// using this was not beneficial because there was a json parse error.
 const otlpLogExporter = new OTLPLogExporter({
     url: 'http://localhost:4317/v1/logs',
 });
-
 // const
+// Define your OTLP endpoint.
+const OTLP_ENDPOINT = process.env.OTEL_EXPORTER_OTLP_METRICS_ENDPOINT || 'http://localhost:4318/v1/metrics';
+
+// Configure the OTLP Metric Exporter
+const metricExporter = new OTLPMetricExporter({
+  url: OTLP_ENDPOINT,
+  headers: {},
+});
+
+
 
 const sdk = new NodeSDK({
     resource: new Resource({
@@ -49,6 +63,7 @@ const sdk = new NodeSDK({
         [ATTR_SERVICE_VERSION]: '1.0',
     }),
     traceExporter: new ConsoleSpanExporter(),
+
     metricReader: new PeriodicExportingMetricReader({
         exporter: new ConsoleMetricExporter(),
     }),
@@ -69,3 +84,5 @@ const sdk = new NodeSDK({
 //   }),
 
 sdk.start();
+
+

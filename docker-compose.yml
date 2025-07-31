@@ -23,6 +23,18 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     # networks:
     #   - loki
+  prometheus:
+    image: prom/prometheus:latest # Use the latest official Prometheus image
+    container_name: prometheus-server
+    ports:
+      - "9090:9090" # Map host port 9090 to container port 9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml # Mount our config file
+      # - prometheus_data:/prometheus # Persist Prometheus data (time series database)
+    command: --config.file=/etc/prometheus/prometheus.yml --web.enable-remote-write-receiver # Use our config file, enable remote write receiver
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # <--- ADDED
+    restart: always
 
   grafana:
     environment:

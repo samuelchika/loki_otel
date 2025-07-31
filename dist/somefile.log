@@ -2,3 +2,4 @@
 {"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}
 {"level":"info","max":6,"message":"Rolled 3 dice: 4, 4, 2","min":1,"span_id":"ea1a49f4988ad34f","trace_flags":"01","trace_id":"7eb95c50d6153f935305eff7661665c6"}
 {"duration":8,"ip":"::1","level":"info","message":"finished","method":"GET","path":"/rolldice","span_id":"37950c80614fc0b7","timestamp":1753697759311,"trace_flags":"01","trace_id":"7eb95c50d6153f935305eff7661665c6","url":"/rolldice?rolls=3","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"}
+{"level":"info","message":"Listening for requests on http://localhost:8080","update":"Server is running without error"}

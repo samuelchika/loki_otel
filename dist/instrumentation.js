@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // /*instrumentation.ts*/
 // import { NodeSDK } from '@opentelemetry/sdk-node';
 // import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
@@ -7,7 +8,6 @@
 //     PeriodicExportingMetricReader,
 //     ConsoleMetricExporter,
 // } from '@opentelemetry/sdk-metrics';
-Object.defineProperty(exports, "__esModule", { value: true });
 // const sdk = new NodeSDK({
 //     traceExporter: new ConsoleSpanExporter(),
 //     metricReader: new PeriodicExportingMetricReader({
@@ -20,15 +20,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sdk_node_1 = require("@opentelemetry/sdk-node");
 const sdk_trace_node_1 = require("@opentelemetry/sdk-trace-node");
 const sdk_metrics_1 = require("@opentelemetry/sdk-metrics");
+const exporter_metrics_otlp_http_1 = require("@opentelemetry/exporter-metrics-otlp-http");
 const resources_1 = require("@opentelemetry/resources");
 const auto_instrumentations_node_1 = require("@opentelemetry/auto-instrumentations-node");
 const semantic_conventions_1 = require("@opentelemetry/semantic-conventions");
 const sdk_logs_1 = require("@opentelemetry/sdk-logs");
 const exporter_logs_otlp_grpc_1 = require("@opentelemetry/exporter-logs-otlp-grpc");
+// using this was not beneficial because there was a json parse error.
 const otlpLogExporter = new exporter_logs_otlp_grpc_1.OTLPLogExporter({
     url: 'http://localhost:4317/v1/logs',
 });
 // const
+// Define your OTLP endpoint.
+const OTLP_ENDPOINT = process.env.OTEL_EXPORTER_OTLP_METRICS_ENDPOINT || 'http://localhost:4318/v1/metrics';
+// Configure the OTLP Metric Exporter
+const metricExporter = new exporter_metrics_otlp_http_1.OTLPMetricExporter({
+    url: OTLP_ENDPOINT,
+    headers: {},
+});
 const sdk = new sdk_node_1.NodeSDK({
     resource: new resources_1.Resource({
         [semantic_conventions_1.ATTR_SERVICE_NAME]: 'dice-software-node',
